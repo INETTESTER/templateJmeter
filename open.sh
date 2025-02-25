@@ -7,7 +7,7 @@
                      projectname="template" #ตั้งชื่อ projhttpsect ให้เหมือนกัน
                      google_sheet="https://docs.google.com/spreadsheets/d/1H7UgGtAy3JKvulLqGXVm5zeNq1FdNKonMxxBETQtjXQ/edit?gid=1610289956#gid=1610289956" 
                      id="1"                 #เปลี่ยน id ทุกครั้งที่ยิง
-                     user="2";            #จำนวนผู้ใช้งาน
+                     user="1";            #จำนวนผู้ใช้งาน
                      durationx="1";        #วินาที
                      scenario="1"           #scenario="1" ยิงเเบบกำหนด request (duration ได้แค่ 1 วินาที)
                      cid="1"                #scenario="2" ยิงเเบบกำหนด VUs  (กำหนดว่า user x คน ใช้ระบบ x วินาที)
@@ -89,7 +89,11 @@ if [ "$status" = "normal" ]; then
     k6 run --env filename="$filenamex" --env projectname="$projectname" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$durationx" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
 elif [ "$status" = "report" ]; then
     # รันแค่ main/insertdata.js
-    k6 run --env filename="$filenamex" --env projectname="$projectname" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$durationx" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
+    if [ -f "$report_path/results.json" ]; then
+      k6 run --env filename="$filenamex" --env projectname="$projectname" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$durationx" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
+    else
+      echo "❌ Report not found"
+    fi
 else
-    echo "Invalid report value: $status"
+    echo "❌ Invalid report value: $status"
 fi

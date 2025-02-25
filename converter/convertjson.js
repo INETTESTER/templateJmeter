@@ -43,9 +43,9 @@ fs.readFile(jtlFilePath, 'utf8', (err, data) => {
 
   fs.writeFile(jsonFilePath, JSON.stringify(result, null, 2), (err) => {
     if (err) {
-      console.error("Error writing JSON file:", err);
+      //console.error("Error writing JSON file:", err);
       return;
     }
-    console.log("Status Codes Counts have been saved to", jsonFilePath);
+    //console.log("Status Codes Counts have been saved to", jsonFilePath);
   });
 });
