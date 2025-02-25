@@ -1,0 +1,2 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1740472331806,513,ran2,200,OK,Thread Group 1-1,text,true,,392574,103,1,1,https://k6.io/,473,0,454
