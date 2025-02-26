@@ -47,7 +47,7 @@ export default function () {
   const error = http_reqs_passes;
   const sumerror = error - (unknown + e400 + e401 + e403 + e404 + e429 + e500 + e502 + e503 + e504);
   const finalunknown = unknown + sumerror;
-
+  
   const now = new Date();
   const startTime = new Date(now.getTime() - (testtime * 1000));
   const endTime = new Date(now.getTime());
