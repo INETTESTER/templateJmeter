@@ -6,6 +6,7 @@ const google_link = __ENV.google_link || "1";
 const user = __ENV.user || "1";
 const durationx = __ENV.durationx || "1";
 const projectname = __ENV.projectname || "1";
+const report_path = __ENV.report_path || "1";
 const reportPath = `../report/${date}/${filename}/statistics.json`;
 const reportPath2 = `../report/${date}/${filename}/results.json`;
 const jsonData = open(reportPath);
@@ -47,7 +48,7 @@ export default function () {
   const error = http_reqs_passes;
   const sumerror = error - (unknown + e400 + e401 + e403 + e404 + e429 + e500 + e502 + e503 + e504);
   const finalunknown = unknown + sumerror;
-  
+
   const now = new Date();
   const startTime = new Date(now.getTime() - (testtime * 1000));
   const endTime = new Date(now.getTime());
@@ -80,6 +81,8 @@ export default function () {
     }
     console.log("⭐ Number of errors : " + error);
   }
+  console.log("==============================");
+  console.log("⚡ "+report_path);
   const sheetDB = 'https://script.google.com/macros/s/AKfycbyOMNksImH823XdyegUl20B16Ed7w3qOitEhd4kSacY3KQQZCbrXW1EGubx0BL3puet/exec?action=insertsummary';
   const payload2 = {
     projectname: projectname,

@@ -85,13 +85,15 @@ if [ "$status" = "normal" ]; then
     # รัน main/insertdata.js
     if [ -f "$report_path/results.json" ] && [ -s "$report_path/statistics.json" ]; then
       echo "✨ Uploading report..."
-      k6 run --env filename="$filenamex" --env projectname="$API" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$duration" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
+      win_path="$(pwd -W)/$report_path/index.html"
+      k6 run --env filename="$filenamex" --env report_path="$win_path" --env projectname="$API" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$duration" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
     fi
 elif [ "$status" = "report" ]; then
     # รันแค่ main/insertdata.js
     if [ -f "$report_path/results.json" ] && [ -s "$report_path/statistics.json" ]; then
       echo "✨ Uploading report..."
-      k6 run --env filename="$filenamex" --env projectname="$API" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$duration" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
+      win_path="$(pwd -W)/$report_path/index.html"
+      k6 run --env filename="$filenamex" --env report_path="$win_path" --env projectname="$API" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$duration" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
     else
       echo "❌ Report not found"
     fi
