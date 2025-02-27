@@ -53,7 +53,7 @@ export default function () {
   const startTime = new Date(now.getTime() - (testtime * 1000));
   const endTime = new Date(now.getTime());
 
-  console.log("projectname: " + projectname);
+  console.log("API: " + projectname);
   console.log("ID: " + id);
   console.log("==============================");
   console.log(`Request: ${request}`);
