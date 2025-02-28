@@ -86,6 +86,7 @@ if [ "$status" = "normal" ]; then
     if [ -f "$report_path/results.json" ] && [ -s "$report_path/statistics.json" ]; then
       echo "✨ Uploading report..."
       win_path="$(pwd -W)/$report_path/index.html"
+      rm jmeter.log
       k6 run --env filename="$filenamex" --env report_path="$win_path" --env projectname="$API" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$duration" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
     fi
 elif [ "$status" = "report" ]; then
@@ -93,6 +94,7 @@ elif [ "$status" = "report" ]; then
     if [ -f "$report_path/results.json" ] && [ -s "$report_path/statistics.json" ]; then
       echo "✨ Uploading report..."
       win_path="$(pwd -W)/$report_path/index.html"
+      rm jmeter.log
       k6 run --env filename="$filenamex" --env report_path="$win_path" --env projectname="$API" --env date="$folder_report" --env id="$id" --env user="$user" --env durationx="$duration" --env google_link="$google_sheet" gafana/insertdata.js --no-summary
     else
       echo "❌ Report not found"
